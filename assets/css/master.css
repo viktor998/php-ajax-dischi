@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+#root .card-container {
+  margin: auto;
+  justify-self: flex-end;
+  -o-perspective: 1000;
+  perspective: 1000;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+}
+#root .card-container .card {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  margin: auto auto;
+  justify-self: left;
+}
+#root .card-container .card .front, #root .card-container .card .back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  transition: transform 400ms;
+  transition-timing-function: linear;
+  transform-origin: center center;
+}
+#root .card-container .card .front span, #root .card-container .card .back span {
+  padding: 5px;
+  color: white;
+  margin-left: 20px;
+}
+#root .card-container .card .front {
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: rotateX(0deg);
+}
+#root .card-container .card .back {
+  background: rgba(0, 0, 0, 0.85);
+  transform: rotateX(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+#root .card-container .card:hover .back {
+  transform: rotateX(0deg);
+}
+#root .card-container .card:hover .front {
+  transform: rotateX(-180deg);
+}
