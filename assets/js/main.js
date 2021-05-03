@@ -6,19 +6,19 @@ var app = new Vue({
         dischi: [],
         selected:'All',
         checked: false,
-        genre:[],
+        authors:[],
         
     },    
     mounted(){
-        axios.get('https://flynn.boolean.careers/exercises/api/array/music')
+        axios.get('http://localhost/php/php-vue-dischi/call.php')
         .then((response) => {
-            
-            this.dischi = response.data.response;
+            console.log(response)
+            this.dischi = response.data;
               
             this.dischi.forEach((element) => {
                 
-                if(!this.genre.includes(element.genre)){
-                    this.genre.push(element.genre)
+                if(!this.authors.includes(element.author)){
+                    this.authors.push(element.author)
                     
                 }
                 
@@ -26,21 +26,6 @@ var app = new Vue({
             }); 
             
         });   
-    },
-    methods: {
-        sortF: function(){
-            this.checked = !this.checked;
-            if(this.checked){
-                console.log(this.checked)
-                this.dischi.sort((a, b) =>a.year - b.year)
-
-            }else{
-                axios.get('https://flynn.boolean.careers/exercises/api/array/music')
-                .then((response) => {
-                    this.dischi = response.data.response;
-                });   
-            }
-        }
     }
     
 
